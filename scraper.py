@@ -6,12 +6,12 @@ import os
 import re
 import scraperwiki
 import urllib2
-import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
 
 
 #### FUNCTIONS 1.0
+import requests    # import requests to validate url
 
 def validateFilename(filename):
     filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9QY][0-9]$'
