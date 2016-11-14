@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 
 #### FUNCTIONS 1.2
-import requests    # import requests to validate url
+import requests    # import requests to validate urls
 
 def validateFilename(filename):
     filenameregex = '^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+_[0-9][0-9][0-9][0-9]_[0-9QY][0-9]$'
@@ -38,6 +38,7 @@ def validateFilename(filename):
 
 
 def validateURL(url):
+
      try:
         r = requests.get(url, allow_redirects=True, timeout=20)
         count = 1
@@ -94,8 +95,6 @@ data = []
 
 #### READ HTML 1.0
 
-
-
 html = urllib2.urlopen(url)
 soup = BeautifulSoup(html, 'lxml')
 
@@ -117,6 +116,8 @@ for link in links:
         if 'Q4' in url:
             csvMth = 'Q4'
         csvYr = url.split('to')[-1].split('(CSV)')[0].strip()[-4:]
+        if '.CSV' in csvYr:
+            csvYr = '2016'
         csvMth = convert_mth_strings(csvMth.upper())
         data.append([csvYr, csvMth, url])
 
