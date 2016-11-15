@@ -104,7 +104,6 @@ soup = BeautifulSoup(html, 'lxml')
 block = soup.find('section', attrs = {'id':'downloads'})
 links = block.findAll('a', href = True)
 for link in links:
-    print link
     if '.CSV' in link['href']:
         url = link['href']
         csvMth = url.split('to')[-1].strip()[:3]
