@@ -104,7 +104,6 @@ soup = BeautifulSoup(html, 'lxml')
 #### SCRAPE DATA
 
 for p in range(1, 3):
-    print url.format(p)
     html = urllib2.urlopen(url.format(p))
     soup = BeautifulSoup(html, 'lxml')
     links = soup.findAll('a', 'item__link')
