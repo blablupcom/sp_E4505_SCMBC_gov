@@ -54,7 +54,8 @@ def validateURL(url):
             ext = '.csv'
         else:
             ext = os.path.splitext(url)[1]
-        print ext
+        if 'CSV' in os.path.splitext(url):
+            ext = 'CSV'
         validURL = r.status_code == 200
         validFiletype = ext.lower() in ['.csv', '.xls', '.xlsx']
         return validURL, validFiletype
