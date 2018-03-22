@@ -8,7 +8,8 @@ import scraperwiki
 import urllib2
 from datetime import datetime
 from bs4 import BeautifulSoup
-
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 #### FUNCTIONS 1.2
 import requests    # import requests to validate urls
@@ -107,17 +108,18 @@ for p in range(1, 3):
     for link in links:
             url = link['href']
             link_text = link.text
-            if 'Q1' in link_text or 'Quarter 1' in link_text:
-                csvMth = 'Q1'
-            if 'Q2' in link_text or 'Quarter 2' in link_text:
-                csvMth = 'Q2'
-            if 'Q3' in link_text or 'Quarter 3' in link_text:
-                csvMth = 'Q3'
-            if 'Q4' in link_text or 'Quarter 4' in link_text:
-                csvMth = 'Q4'
-            csvYr = link_text.split('(CSV)')[0].strip()[-4:]
-            csvMth = convert_mth_strings(csvMth.upper())
-            data.append([csvYr, csvMth, url])
+            if '(CSV)' in link_text:
+                if 'Q1' in link_text or 'Quarter 1' in link_text:
+                    csvMth = 'Q1'
+                if 'Q2' in link_text or 'Quarter 2' in link_text:
+                    csvMth = 'Q2'
+                if 'Q3' in link_text or 'Quarter 3' in link_text:
+                    csvMth = 'Q3'
+                if 'Q4' in link_text or 'Quarter 4' in link_text:
+                    csvMth = 'Q4'
+                csvYr = link_text.split('(CSV)')[0].strip()[-4:]
+                csvMth = convert_mth_strings(csvMth.upper())
+                data.append([csvYr, csvMth, url])
 
 #### STORE DATA 1.0
 
