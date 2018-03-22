@@ -110,6 +110,7 @@ for p in range(1, 3):
     for link in links:
             url = link['href']
             link_text = link.text
+            print link_text
             if '(CSV)' in link_text:
                 if 'Q1' in link_text or 'Quarter 1' in link_text:
                     csvMth = 'Q1'
