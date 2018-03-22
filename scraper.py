@@ -109,7 +109,7 @@ for p in range(1, 3):
     soup = BeautifulSoup(html, 'lxml')
     links = soup.findAll('a', 'item__link')
     for link in links:
-            url = link['href']
+            file_url = link['href']
             link_text = link.text
             print link_text.encode('utf-8')
             if '(CSV)' in link_text:
@@ -123,7 +123,7 @@ for p in range(1, 3):
                     csvMth = 'Q4'
                 csvYr = link_text.split('(CSV)')[0].strip()[-4:]
                 csvMth = convert_mth_strings(csvMth.upper())
-                data.append([csvYr, csvMth, url])
+                data.append([csvYr, csvMth, file_url])
 
 #### STORE DATA 1.0
 
