@@ -48,14 +48,12 @@ def validateURL(url):
             count += 1
             r = requests.get(url, allow_redirects=True, timeout=20)
         sourceFilename = r.headers.get('Content-Disposition')
-        print sourceFilename
         if sourceFilename:
             ext = os.path.splitext(sourceFilename)[1].replace('"', '').replace(';', '').replace(' ', '')
         if r.headers['Content-Type'] == 'application/x-download':
             ext = '.csv'
         else:
             ext = os.path.splitext(url)[1]
-        print os.path.splitext(url)
         print ext
         validURL = r.status_code == 200
         validFiletype = ext.lower() in ['.csv', '.xls', '.xlsx']
